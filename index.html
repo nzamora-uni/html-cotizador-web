@@ -21,17 +21,60 @@
         Cotización Web
         <br><br>
         <label for="dominio">Dominio:
-            <input class="form-check-input" type="checkbox" id="dominio" name="dominio">
+            <input class="evt-click form-check-input" type="checkbox" id="dominio" name="dominio" data-precio="600">
         </label>
         <br><br>
         <label for="hosting">Hosting:
-            <input class="form-check-input" type="checkbox" id="hosting" name="hosting">
+            <input class="evt-click form-check-input" type="checkbox" id="hosting" name="hosting" data-precio="1500">
         </label>
+        <br><br>
+        <label>
+            Pages:
+            <input type="checkbox" class="evt-click check-pages" value="pages" data-precio="7000">
+            
+        </label>
+        <div class="total">Total: <span id="total">0</span></div>
     </div>
     <div class="footer">
         <div class="year">2026 Derechos reservados</div> 
         <div class="uvaq-dev">Desarrollado por Uvaq</div>
     </div>
+<script>
+    const dominio=document.querySelector("#dominio");
+    const hosting=document.querySelector("#hosting");
+    const pages=document.querySelector(".check-pages");
+    var total=0;
 
+    //Evento click para hosting
+    // hosting.addEventListener("click", function(){
+    //     if(hosting.checked){
+    //         total = parseInt(hosting.dataset.precio);
+    //         console.log("Hosting seleccionado, Total: "+total);
+    //     }else{
+    //         console.log("Hosting no seleccionado");
+    //     }
+    //     //total
+    //     document.getElementById("total").textContent = total;
+    // });
+    //.evt-click
+    const checkboxes = document.querySelectorAll('.evt-click');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('click', function() {
+            let total = 0;
+            checkboxes.forEach(function(box) {
+                if (box.checked) {
+                    total += Number(box.dataset.precio);
+                }
+            });
+            document.getElementById("total").textContent = total;
+        });
+    });
+    
+    //pruebas
+    console.log(dominio.dataset.precio +", "+ hosting.dataset.precio);
+    // a numero
+    console.log(Number(dominio.dataset.precio) + Number(hosting.dataset.precio));
+    
+</script>
 </body>
 </html> 
